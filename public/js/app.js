@@ -1,4 +1,4 @@
-console.log("Javacript file has been loaded");
+//console.log("Javacript file has been loaded");
 
 const searchForm = document.querySelector("form");
 const address = document.querySelector("input");
