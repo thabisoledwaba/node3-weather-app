@@ -1,15 +1,17 @@
 import express from "express";
-//import path from "node:path";
+import path from "node:path";
 import hbs from "hbs";
 import geocode from "./utils/geocode.js";
 import forecast from "./utils/forecast.js";
 
 const app = express();
+const port = process.env.PORT || 3000; // to be set by Heroku after deployement
 
 //Define paths for Express configuration
-const publicDirectoryPath = "../public";      //path.join( __dirname,"../public");
-const templatesDirectory = "../templates/views";
-const partialsPath = "../templates/partials";
+//const currentDire = path.dirname()
+const publicDirectoryPath = path.join( path.dirname("../"),"/public"); //"../public";      //path.join( __dirname,"../public");
+const templatesDirectory = path.join( path.dirname("../"),"/templates/views");
+const partialsPath = path.join( path.dirname("../"),"/templates/partials");
 
 // setup handlebars engine and views location
 app.set("view engine","hbs");
@@ -96,6 +98,6 @@ app.get("{*unknown}" , (req, res) => {
 });
 
 
-app.listen(3000,() => {
-    console.log("Server listening on port : 3000");
+app.listen(port,() => {
+    console.log("Server listening on port : " + port);
 });
